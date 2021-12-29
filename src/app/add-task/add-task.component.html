@@ -1,0 +1,17 @@
+<div class="addTask">
+  <input
+    type="text"
+    id="title"
+    name="title"
+    placeholder="title"
+    [(ngModel)]="item.title"
+  />
+  <input
+    type="text"
+    id="desc"
+    name="desc"
+    placeholder="desc"
+    [(ngModel)]="item.desc"
+  />
+  <button type="button" (click)="onAddTask()">Add</button>
+</div>
