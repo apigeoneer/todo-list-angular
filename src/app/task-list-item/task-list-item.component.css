@@ -1,0 +1,22 @@
+.container {
+  width: 50%;
+  margin: 16px;
+  padding: 8px;
+  background: #e2e2e2;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container:hover {
+  opacity: 0.8;
+}
+
+.container-right {
+  display: flex;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
