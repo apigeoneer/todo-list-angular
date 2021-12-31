@@ -4,9 +4,3 @@
   transform: translate(-50%, -50%);
   position: absolute;
 } */
-
-ul,
-li {
-  display: block;
-  list-style: none;
-}

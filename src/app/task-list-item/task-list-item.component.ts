@@ -6,11 +6,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./task-list-item.component.css'],
 })
 export class TaskListItemComponent implements OnInit {
-  // This component expects that the parent component will supply a task value.
+  // This component expects that the parent component will supply an item value.
   @Input() item: any;
 
   @Output() itemRemove: EventEmitter<any> = new EventEmitter<any>();
   @Output() itemEdit: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output('getTasksFromLocal') getItems: EventEmitter<any[]> =
+    new EventEmitter();
+
+  itemTitle: string = '';
 
   constructor() {
     this.item = { title: '', desc: '' };
