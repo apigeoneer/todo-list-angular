@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>To-do List</h1>
+  <app-add-task [item]="task" (itemChange)="addTask($event)"></app-add-task>
+  <a routerLink="/tasks">Tasks</a>
+  <div class="taskList">
+    <ul *ngFor="let taskItem of tasks">
+      <li (click)="onSelectTask(taskItem)">
+        <app-task-list-item
+          [item]="taskItem"
+          (itemRemove)="removeTask($event)"
+          (itemEdit)="editTask($event)"
+          (getItems)="getTasksFromLocal()"
+        ></app-task-list-item>
+      </li>
+    </ul>
+  </div>
+</div>

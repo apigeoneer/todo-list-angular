@@ -8,6 +8,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
 import { FormsModule } from '@angular/forms';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
     TaskListItemComponent,
     routingComponents,
     TasksListComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
