@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list-item',
@@ -17,7 +18,7 @@ export class TaskListItemComponent implements OnInit {
 
   itemTitle: string = '';
 
-  constructor() {
+  constructor(private router: Router) {
     this.item = { title: '', desc: '' };
   }
 
@@ -30,6 +31,7 @@ export class TaskListItemComponent implements OnInit {
 
   onEditTask() {
     // console.log(this.item);
-    this.itemEdit.emit(this.item);
+    // this.itemEdit.emit(this.item);
+    // this.router.navigate(['/', this.tasks.indexOf(task)]);
   }
 }
