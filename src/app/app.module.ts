@@ -10,6 +10,7 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { HomeComponent } from './home/home.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { TasksserviceService } from './tasksservice.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
     EditTaskComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [],
+  providers: [TasksserviceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

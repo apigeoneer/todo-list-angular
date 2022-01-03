@@ -1,5 +1,8 @@
+import { getTranslationDeclStmts } from '@angular/compiler/src/render3/view/template';
+import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TasksserviceService } from '../tasksservice.service';
 
 @Component({
   selector: 'app-home',
@@ -10,19 +13,24 @@ export class HomeComponent implements OnInit {
   task: any;
   tasks: any[];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private tasksService: TasksserviceService
+  ) {
     this.task = { title: '', desc: '' };
     this.tasks = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getItems();
+  }
 
   addTask(task: any) {
     // console.log(this.task);
     this.tasks.push(task);
     this.task = { title: '', desc: '' };
 
-    this.addTaskToLocal();
+    this.tasksService.setTasksToLocal();
     // this.tasks = JSON.parse(localStorage.getItem('todos') || '');
   }
 
@@ -42,17 +50,11 @@ export class HomeComponent implements OnInit {
     console.log(task);
   }
 
-  addTaskToLocal() {
-    localStorage.setItem('todos', JSON.stringify(this.tasks));
-    // console.log('addTaskToLocal');
-    // console.log(this.tasks);
-  }
-
-  getTasksFromLocal() {
-    localStorage.getItem('todos');
-  }
-
   onSelectTask(task: any) {
     this.router.navigate(['/taskdetail', this.tasks.indexOf(task)]);
+  }
+
+  getItems() {
+    this.tasksService.getTasksFromLocal();
   }
 }
