@@ -53,6 +53,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectTask(task: any) {
-    this.router.navigate(['/', this.tasks.indexOf(task), JSON.stringify(task)]);
+    this.router.navigate(['/taskdetail', this.tasks.indexOf(task)]);
   }
 }
