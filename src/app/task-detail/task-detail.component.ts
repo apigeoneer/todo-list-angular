@@ -19,19 +19,15 @@ export class TaskDetailComponent implements OnInit {
     debugger;
     let id = parseInt(this.route.snapshot.paramMap.get('id') || '');
     this.selectedId = id;
-    console.log(this.selectedId);
+    // console.log(this.selectedId);
 
-    // let title = this.route.snapshot.paramMap.get('title') || '';
-    // this.selectedTitle = title;
+    let tasks = JSON.parse(localStorage.getItem('todos') || '');
 
-    let task = this.route.snapshot.paramMap.get('task') || '';
-    if (task) {
-      this.selectedTask = JSON.parse(task);
-    }
+    this.selectedTask = tasks[id];
 
     this.selectedTitle = this.selectedTask.title;
     this.selectedDesc = this.selectedTask.desc;
-    console.log(this.selectedTitle);
-    console.log(this.selectedDesc);
+    // console.log(this.selectedTitle);
+    // console.log(this.selectedDesc);
   }
 }

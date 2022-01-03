@@ -1,1 +1,4 @@
-<p>edit-task works!</p>
+<app-add-task
+  [item]="selectedTask"
+  (itemEditChange)="editTask($event)"
+></app-add-task>

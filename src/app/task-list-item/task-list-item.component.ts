@@ -30,8 +30,12 @@ export class TaskListItemComponent implements OnInit {
   }
 
   onEditTask() {
-    // console.log(this.item);
-    // this.itemEdit.emit(this.item);
-    // this.router.navigate(['/', this.tasks.indexOf(task)]);
+    debugger;
+    let tasks = JSON.parse(localStorage.getItem('todos') || '');
+    let id = tasks.indexOf(this.item);
+    console.log(tasks);
+    console.log(this.item);
+    console.log(tasks.indexOf(this.item));
+    this.router.navigate(['/taskupdate', tasks.indexOf(this.item)]);
   }
 }
