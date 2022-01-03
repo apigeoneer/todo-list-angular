@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { HomeComponent } from './home/home.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
     routingComponents,
     TasksListComponent,
     HomeComponent,
+    EditTaskComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

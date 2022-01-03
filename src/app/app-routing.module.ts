@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 import { HomeComponent } from './home/home.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'tasks', component: TasksListComponent },
-  { path: ':id', component: TaskDetailComponent },
+  // { path: 'tasks', component: TasksListComponent },
+  { path: ':id/:task', component: TaskDetailComponent },
+  { path: 'edit:id', component: EditTaskComponent },
 ];
 
 @NgModule({
@@ -15,4 +16,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-export const routingComponents = [TasksListComponent, TaskDetailComponent];
+export const routingComponents = [TaskDetailComponent, EditTaskComponent];
