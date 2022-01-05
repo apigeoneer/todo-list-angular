@@ -22,15 +22,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.tasksService.getTasksFromLocal();
     this.getItems();
   }
 
   addTask(task: any) {
+    debugger;
     // console.log(this.task);
     this.tasks.push(task);
     this.task = { title: '', desc: '' };
 
-    this.tasksService.setTasksToLocal();
+    this.saveitems();
     // this.tasks = JSON.parse(localStorage.getItem('todos') || '');
   }
 
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit {
     // console.log(this.tasks);
 
     // update tasks in local
-    localStorage.setItem('todos', JSON.stringify(this.tasks));
+    this.saveitems();
     // console.log(this.tasks);
   }
 
@@ -55,6 +57,10 @@ export class HomeComponent implements OnInit {
   }
 
   getItems() {
-    this.tasksService.getTasksFromLocal();
+    this.tasks = this.tasksService.getTasksFromLocal();
+  }
+
+  saveitems() {
+    this.tasksService.setTasksToLocal(this.tasks);
   }
 }

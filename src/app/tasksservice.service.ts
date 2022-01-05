@@ -4,17 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TasksserviceService {
-  public tasks: any[] = [];
+  // public tasks: any[] = [];
 
   constructor() {}
 
-  setTasksToLocal() {
-    localStorage.setItem('todos', JSON.stringify(this.tasks));
+  setTasksToLocal(tasks: any) {
+    localStorage.setItem('todos', JSON.stringify(tasks));
     // console.log('addTaskToLocal');
     // console.log(this.tasks);
   }
 
-  getTasksFromLocal() {
-    localStorage.getItem('todos');
+  getTasksFromLocal(): any[] {
+    return JSON.parse(localStorage.getItem('todos') || '');
   }
 }
