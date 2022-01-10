@@ -34,13 +34,6 @@ export class TaskListItemComponent implements OnInit {
   }
 
   onEditTask() {
-    debugger;
-    let id = this.tasks.indexOf(this.item);
-    this.router.navigate(['/taskupdate', id]);
-
-    console.log('this.item', this.item);
-    console.log('tasks', this.tasks);
-    console.log('index', id);
-    console.log('tasks has item', this.tasks.includes(this.item));
+    this.itemEdit.emit(this.item);
   }
 }

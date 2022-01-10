@@ -10,12 +10,13 @@ import { TasksserviceService } from '../tasksservice.service';
 export class HomeComponent implements OnInit {
   task: any;
   tasks: any[];
+  nextId: number = -1;
 
   constructor(
     private router: Router,
     private tasksService: TasksserviceService
   ) {
-    this.task = { title: '', desc: '' };
+    this.task = { id: -1, title: '', desc: '' };
     this.tasks = [];
   }
 
@@ -27,18 +28,25 @@ export class HomeComponent implements OnInit {
   addTask(task: any) {
     debugger;
     // console.log(this.task);
+    if (this.tasks.length == 0) {
+      this.nextId = 0;
+    } else {
+      let maxId = this.tasks[this.tasks.length - 1].id;
+      this.nextId = maxId + 1;
+    }
+
+    task.id = this.nextId;
     this.tasks.push(task);
-    this.task = { title: '', desc: '' };
+    console.log(this.tasks);
+    this.task = { id: -1, title: '', desc: '' };
 
     this.saveitems();
     // this.tasks = JSON.parse(localStorage.getItem('todos') || '');
   }
 
   removeTask(task: any) {
-    let taskId = this.tasks.indexOf(task);
-    // console.log(this.tasks);
     // At position taskId, remove 1 item
-    this.tasks.splice(taskId, 1);
+    this.tasks.splice(task.id, 1);
     // console.log(this.tasks);
 
     // update tasks in local
@@ -47,11 +55,11 @@ export class HomeComponent implements OnInit {
   }
 
   editTask(task: any) {
-    console.log(task);
+    this.router.navigate(['/taskupdate', task.id]);
   }
 
   onSelectTask(task: any) {
-    this.router.navigate(['/taskdetail', this.tasks.indexOf(task)]);
+    this.router.navigate(['/taskdetail', task.id]);
   }
 
   getItems() {

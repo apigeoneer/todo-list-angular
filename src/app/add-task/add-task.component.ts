@@ -24,7 +24,7 @@ export class AddTaskComponent implements OnInit {
     this.itemChange.emit(this.item);
   }
 
-  validateForm(title: string, desc: string) {
+  validateForm(id: number, title: string, desc: string) {
     if (title == null) {
       this.errorMessage = "Task title can't be blank.";
       console.log(this.errorMessage);
