@@ -4,8 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TasksserviceService {
-  // public tasks: any[] = [];
-
   constructor() {}
 
   setTasksToLocal(tasks: any) {

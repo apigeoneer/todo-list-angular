@@ -11,13 +11,31 @@ export class AddTaskComponent implements OnInit {
 
   @Output() itemChange: EventEmitter<any> = new EventEmitter<any>();
 
+  public errorMessage = '';
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onAddTask() {
+    debugger;
     // Whenever the user updates item, we raise the event itemChange
     // & pass the updated item as the argument to it.
     this.itemChange.emit(this.item);
+  }
+
+  validateForm(title: string, desc: string) {
+    if (title == null) {
+      this.errorMessage = "Task title can't be blank.";
+      console.log(this.errorMessage);
+    }
+    if (desc == null) {
+      this.errorMessage = "Task description can't be blank.";
+      console.log(this.errorMessage);
+    }
+    if (title === desc) {
+      this.errorMessage = 'Task description should not match the task title.';
+      console.log(this.errorMessage);
+    }
   }
 }

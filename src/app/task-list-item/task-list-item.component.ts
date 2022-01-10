@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { TasksserviceService } from '../tasksservice.service';
 
 @Component({
   selector: 'app-task-list-item',
@@ -16,13 +17,16 @@ export class TaskListItemComponent implements OnInit {
   @Output('getTasksFromLocal') getItems: EventEmitter<any[]> =
     new EventEmitter();
 
-  itemTitle: string = '';
+  tasks: any[] = [];
 
-  constructor(private router: Router) {
-    this.item = { title: '', desc: '' };
+  constructor(
+    private router: Router,
+    private tasksService: TasksserviceService
+  ) {}
+
+  ngOnInit(): void {
+    this.tasks = this.tasksService.getTasksFromLocal();
   }
-
-  ngOnInit(): void {}
 
   onRemoveTask() {
     // console.log(this.item);
@@ -31,11 +35,12 @@ export class TaskListItemComponent implements OnInit {
 
   onEditTask() {
     debugger;
-    let tasks = JSON.parse(localStorage.getItem('todos') || '');
-    let id = tasks.indexOf(this.item);
-    console.log(tasks);
-    console.log(this.item);
-    console.log(tasks.indexOf(this.item));
-    this.router.navigate(['/taskupdate', tasks.indexOf(this.item)]);
+    let id = this.tasks.indexOf(this.item);
+    this.router.navigate(['/taskupdate', id]);
+
+    console.log('this.item', this.item);
+    console.log('tasks', this.tasks);
+    console.log('index', id);
+    console.log('tasks has item', this.tasks.includes(this.item));
   }
 }

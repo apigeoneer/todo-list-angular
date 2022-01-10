@@ -1,6 +1,6 @@
-import { ParsedProperty, ParsedVariable } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { TasksserviceService } from '../tasksservice.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -13,7 +13,10 @@ export class TaskDetailComponent implements OnInit {
   public selectedTitle = '';
   public selectedDesc = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private tasksService: TasksserviceService
+  ) {}
 
   ngOnInit(): void {
     debugger;
@@ -21,7 +24,7 @@ export class TaskDetailComponent implements OnInit {
     this.selectedId = id;
     console.log(this.selectedId);
 
-    let tasks = JSON.parse(localStorage.getItem('todos') || '');
+    let tasks = this.tasksService.getTasksFromLocal();
 
     this.selectedTask = tasks[id];
     console.log(this.selectedTask);
