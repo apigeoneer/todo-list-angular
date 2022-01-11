@@ -9,7 +9,13 @@ export class AddTaskComponent implements OnInit {
   // This component expects that the parent will supply an item.
   @Input() item: any;
 
-  @Output() itemChange: EventEmitter<any> = new EventEmitter<any>();
+  @Input() addButtonConfig: any;
+
+  // Add task
+  @Output() itemAddChange: EventEmitter<any> = new EventEmitter<any>();
+
+  // Edit task
+  @Output() itemEditChange: EventEmitter<any> = new EventEmitter<any>();
 
   public errorMessage = '';
 
@@ -21,7 +27,11 @@ export class AddTaskComponent implements OnInit {
     debugger;
     // Whenever the user updates item, we raise the event itemChange
     // & pass the updated item as the argument to it.
-    this.itemChange.emit(this.item);
+    this.itemAddChange.emit(this.item);
+  }
+
+  onSubmitUpdatedTask() {
+    this.itemEditChange.emit(this.item);
   }
 
   validateForm(id: number, title: string, desc: string) {

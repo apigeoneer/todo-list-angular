@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TasksserviceService } from '../tasksservice.service';
 
 @Component({
@@ -8,17 +8,24 @@ import { TasksserviceService } from '../tasksservice.service';
   styleUrls: ['./edit-task.component.css'],
 })
 export class EditTaskComponent implements OnInit {
-  public selectedTask = { title: '', desc: '' };
-  public selectedId = -1;
+  selectedTask = { id: -1, title: '', desc: '' };
+  selectedId = -1;
+  oldTask: any;
+
+  updateTaskButtonConfig = {
+    styles: {
+      backgroundColor: 'green',
+    },
+    text: 'Update',
+  };
 
   constructor(
     private route: ActivatedRoute,
-    private tasksService: TasksserviceService
+    private tasksService: TasksserviceService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    debugger;
-
     let id = parseInt(this.route.snapshot.paramMap.get('id') || '');
     this.selectedId = id;
     // console.log(this.selectedId);
@@ -29,6 +36,15 @@ export class EditTaskComponent implements OnInit {
   }
 
   editTask(task: any) {
-    console.log(task);
+    let tasks = this.tasksService.getTasksFromLocal();
+    let oldTask = tasks[this.selectedId];
+    // console.log('old old task', oldTask);
+    // console.log('updated task', task);
+
+    oldTask.title = task.title;
+    oldTask.desc = task.desc;
+    this.tasksService.setTasksToLocal(tasks);
+
+    this.router.navigate(['/']);
   }
 }

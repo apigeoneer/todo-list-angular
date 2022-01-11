@@ -12,6 +12,13 @@ export class HomeComponent implements OnInit {
   tasks: any[];
   nextId: number = -1;
 
+  addTaskButtonConfig = {
+    styles: {
+      backgroundColor: 'yellow',
+    },
+    text: 'Add',
+  };
+
   constructor(
     private router: Router,
     private tasksService: TasksserviceService
