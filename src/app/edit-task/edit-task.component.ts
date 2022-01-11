@@ -10,8 +10,6 @@ import { TasksserviceService } from '../tasksservice.service';
 export class EditTaskComponent implements OnInit {
   public selectedTask = { title: '', desc: '' };
   public selectedId = -1;
-  public selectedTitle = '';
-  public selectedDesc = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -23,17 +21,11 @@ export class EditTaskComponent implements OnInit {
 
     let id = parseInt(this.route.snapshot.paramMap.get('id') || '');
     this.selectedId = id;
-    console.log(this.selectedId);
+    // console.log(this.selectedId);
 
     let tasks = this.tasksService.getTasksFromLocal();
 
     this.selectedTask = tasks[id];
-    console.log(this.selectedTask);
-
-    this.selectedTitle = this.selectedTask.title;
-    this.selectedDesc = this.selectedTask.desc;
-    console.log(this.selectedTitle);
-    console.log(this.selectedDesc);
   }
 
   editTask(task: any) {
