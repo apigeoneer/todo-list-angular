@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   task: any;
   tasks: any[];
   nextId: number = -1;
+  titleInput = '';
 
   addTaskButtonConfig = {
     styles: {

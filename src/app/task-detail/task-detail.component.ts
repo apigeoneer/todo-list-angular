@@ -25,6 +25,7 @@ export class TaskDetailComponent implements OnInit {
     console.log(this.selectedId);
 
     let tasks = this.tasksService.getTasksFromLocal();
+    console.log(tasks);
 
     this.selectedTask = tasks[id];
     console.log(this.selectedTask);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TasksserviceService } from '../tasksservice.service';
 
@@ -36,10 +36,11 @@ export class EditTaskComponent implements OnInit {
   }
 
   editTask(task: any) {
+    debugger;
     let tasks = this.tasksService.getTasksFromLocal();
     let oldTask = tasks[this.selectedId];
-    // console.log('old old task', oldTask);
-    // console.log('updated task', task);
+    console.log('old old task', oldTask);
+    console.log('updated task', task);
 
     oldTask.title = task.title;
     oldTask.desc = task.desc;
