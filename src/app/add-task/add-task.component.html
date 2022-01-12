@@ -1,7 +1,4 @@
-<!-- <ng-container *ngTemplateOutlet="formButtonConfig['text']"></ng-container> -->
-
 <!-- Add task / Submit updated task -->
-<!-- <ng-template> -->
 <div class="addTask">
   <form>
     <input
@@ -10,17 +7,40 @@
       name="title"
       placeholder="title"
       [(ngModel)]="item.title"
+      required
+      minlength="3"
+      #title="ngModel"
     />
+    <div
+      class="errorMessage"
+      *ngIf="title.invalid && (title.dirty || title.touched)"
+    >
+      <div *ngIf="title.errors?.['required']">Title is required.</div>
+      <div *ngIf="title.errors?.['minlength']">
+        Title must be at least 3 characters long.
+      </div>
+    </div>
     <input
       type="text"
       id="desc"
       name="desc"
       placeholder="desc"
       [(ngModel)]="item.desc"
+      required
+      minlength="3"
+      #desc="ngModel"
     />
+    <div
+      class="errorMessage"
+      *ngIf="desc.invalid && (desc.dirty || desc.touched)"
+    >
+      <div *ngIf="desc.errors?.['required']">Description is required.</div>
+      <div *ngIf="desc.errors?.['minlength']">
+        Description must be at least 3 characters long.
+      </div>
+    </div>
     <button type="button" (click)="onFormSubmit()">
       {{ formButtonConfig.text }}
     </button>
   </form>
 </div>
-<!-- </ng-template> -->
